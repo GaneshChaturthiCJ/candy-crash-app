@@ -30,9 +30,9 @@ const Game = () => {
   }, [timeLeft]);
 
   if (score > target) {
-    message = "You Win!";
+    message = "You Win!✌️";
   } else {
-    message = "You Lose!";
+    message = "You Lose!😶‍🌫️";
   }
 
   //restart game
