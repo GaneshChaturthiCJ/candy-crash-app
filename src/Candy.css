@@ -1,0 +1,34 @@
+.candy {
+    width: 70px;
+    height: 60px;
+    border: 2px solid #fff;
+    display: inline-block;
+    cursor: pointer;
+    color: white;
+  }
+  
+  .red {
+    background-color: red;
+  }
+  
+  .blue {
+    background-color: blue;
+  }
+  
+  .green {
+    background-color: green;
+  }
+  
+  .restart{
+    all: unset;
+    border: 2px solid rgb(255, 254, 254);
+    background-color: red;
+    padding: 5px 10px;
+    color: white;
+    margin: 25px 0;
+  }
+  .restart:hover{
+    background-color: maroon;
+    cursor: pointer;
+  }
+  
