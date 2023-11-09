@@ -10,24 +10,20 @@ localStorage.setItem('candyCrashHighScore', 0);
 const Game = () => {
   const [grid, setGrid] = useState(generateGrid());
   const [score, setScore] = useState(0);
-  const [time,setTime] = useState(18);
-
+  const [time, setTime] = useState(18);
 
   //restart game
   const handleRestartClick = () => {
     setScore(0);
     setGrid(generateGrid());
-    clearInterval(intervalId)
-    setTime(18)
   };
 
-
   //update highscore
-  if(score > localStorage.getItem('candyCrashHighScore')){
-    localStorage.setItem('candyCrashHighScore', score);
+  if (score > localStorage.getItem("candyCrashHighScore")) {
+    localStorage.setItem("candyCrashHighScore", score);
   }
 
-  //To play game sound 
+  //To play game sound
   const audioRef = useRef(null);
   const playSound = () => {
     audioRef.current.play();
@@ -95,14 +91,12 @@ const Game = () => {
     }
   }
 
-  
-
   return (
     <div>
       <h1>Candy Matching Game</h1>
-      <h1>High Score: {localStorage.getItem('candyCrashHighScore')}</h1>
+      <h1>High Score: {localStorage.getItem("candyCrashHighScore")}</h1>
       <h1>Score: {score}</h1>
-      
+
       <div className="grid">
         {grid.map((row, rowIndex) => (
           <div key={rowIndex} className="row">
@@ -115,7 +109,6 @@ const Game = () => {
                 onClick={() => {
                   handleClick(rowIndex, colIndex);
                   playSound();
-    
                 }}
               />
             ))}
