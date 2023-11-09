@@ -2,19 +2,44 @@ import React, { useState, useRef, useEffect } from "react";
 import Candy from "./Candy";
 
 let intervalId;
+let message;
+let target = Math.floor(Math.random() * 21) + 200;
 
 const colors = ["red", "blue", "green"]; // Add more colors as needed
 
-localStorage.setItem('candyCrashHighScore', 0);
+localStorage.setItem("candyCrashHighScore", 0);
 
 const Game = () => {
   const [grid, setGrid] = useState(generateGrid());
   const [score, setScore] = useState(0);
-  const [time, setTime] = useState(18);
+
+  const [timeLeft, setTimeLeft] = useState(60);
+  const [statusMsg, setStatusMsg] = useState(false);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      if (timeLeft === 0) {
+        clearInterval(intervalId);
+        setStatusMsg(true);
+      } else {
+        setTimeLeft((prevTimeLeft) => prevTimeLeft - 1);
+      }
+    }, 1000);
+
+    return () => clearInterval(intervalId);
+  }, [timeLeft]);
+
+  if (score > target) {
+    message = "You Win!";
+  } else {
+    message = "You Lose!";
+  }
 
   //restart game
   const handleRestartClick = () => {
     setScore(0);
+    setTimeLeft(60);
+    setStatusMsg(false);
     setGrid(generateGrid());
   };
 
@@ -93,9 +118,12 @@ const Game = () => {
 
   return (
     <div>
-      <h1>Candy Matching Game</h1>
+      <h1>Candy Matching Game(Target:{target} )</h1>
       <h1>High Score: {localStorage.getItem("candyCrashHighScore")}</h1>
       <h1>Score: {score}</h1>
+
+      <div className="timer">Time Remaining: {timeLeft}</div>
+      {statusMsg ? <h1>{message}</h1> : ""}
 
       <div className="grid">
         {grid.map((row, rowIndex) => (

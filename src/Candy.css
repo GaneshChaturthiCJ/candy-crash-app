@@ -5,6 +5,8 @@
     display: inline-block;
     cursor: pointer;
     color: white;
+    margin: 2px;
+        padding: 5px;
   }
   
   .red {
