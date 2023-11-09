@@ -119,8 +119,10 @@ const Game = () => {
   return (
     <div>
       <h1>Candy Matching Game(Target:{target} )</h1>
-      <h1>High Score: {localStorage.getItem("candyCrashHighScore")}</h1>
-      <h1>Score: {score}</h1>
+      <div className="heading">
+        <h2>High Score: {localStorage.getItem("candyCrashHighScore")}</h2>
+        <h2>Score: {score}</h2>
+      </div>
 
       <div className="timer">Time Remaining: {timeLeft}</div>
       {statusMsg ? <h1>{message}</h1> : ""}
